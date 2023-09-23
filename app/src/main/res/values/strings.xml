@@ -5,4 +5,6 @@
     <string name="error">Error</string>
     <string name="something_went_wrong">something Went Wrong</string>
     <string name="trending">Trending</string>
+    <string name="retry">Retry</string>
+    <string name="retry_again_text">Retry</string>
 </resources>

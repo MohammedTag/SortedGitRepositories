@@ -3,17 +3,14 @@ package com.task.task.ui_module.sortedGithubRepositries
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
-import com.task.task.R
 import com.task.task.databinding.FragmentReposListingBinding
 import com.task.task.presentation_module.sortedGithubRepositories.RepositoriesListViewModel
 import com.task.task.presentation_module.sortedGithubRepositories.events.RepositoriesListEvents
+import com.task.task.presentation_module.sortedGithubRepositories.models.GithubRepoUi
 import com.task.task.ui_module.sortedGithubRepositries.adapter.SortedRepositoriesListingAdapter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -46,6 +43,9 @@ class SortedGithubReposListingFragment :
     private fun bindViews() {
         with(binding) {
             reposListingRv.adapter = adapter
+            retryButton.setOnClickListener {
+                viewModel.getSortedRepos()
+            }
         }
     }
 
@@ -67,6 +67,10 @@ class SortedGithubReposListingFragment :
                 showShimmer(true)
                 startShimmer()
             }
+
+            retryButton.isVisible = false
+            animationView.isVisible = false
+            reposListingRv.isVisible = false
         }
     }
 
@@ -77,11 +81,11 @@ class SortedGithubReposListingFragment :
                 when (event) {
                     is RepositoriesListEvents.ErrorState -> {
                         hideLoading()
-                        Snackbar.make(
-                            binding.paretCl,
-                            "${getString(R.string.something_went_wrong)}${event.err}",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        with(binding) {
+                            animationView.isVisible = true
+                            retryButton.isVisible = true
+                            reposListingRv.isVisible = false
+                        }
                     }
 
                     is RepositoriesListEvents.LoadingState -> {
@@ -90,16 +94,24 @@ class SortedGithubReposListingFragment :
 
                     is RepositoriesListEvents.RetrievedMoviesListSuccessfully -> {
                         hideLoading()
-                        with(event.list) {
-                            if (isEmpty()) {
-                                binding.emptyStateView.visibility = VISIBLE
-                            } else {
-                                binding.reposListingRv.isVisible = true
-                                adapter.submitList(event.list)
-                                binding.emptyStateView.visibility = GONE
-                            }
-                        }
+                        binding.animationView.isVisible = false
+                        binding.retryButton.isVisible = false
+
+                        handleListBinding(event.list)
                     }
+                }
+            }
+        }
+    }
+
+    private fun handleListBinding(list: List<GithubRepoUi>) {
+        with(list) {
+            if (isEmpty()) {
+                // FIXME:  should add empty view (probably not applicable in ourcase , there will always be result)
+            } else {
+                with(binding) {
+                    reposListingRv.isVisible = true
+                    adapter.submitList(list)
                 }
             }
         }
