@@ -7,18 +7,18 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.task.task.R
-import com.task.task.databinding.FragmentMoviesListingBinding
+import com.task.task.databinding.FragmentReposListingBinding
 import com.task.task.presentation_module.sortedGithubRepositories.RepositoriesListViewModel
 import com.task.task.presentation_module.sortedGithubRepositories.events.RepositoriesListEvents
 import com.task.task.ui_module.sortedGithubRepositries.adapter.SortedRepositoriesListingAdapter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class SortedGithubReposListingFragment : DaggerFragment()/*, sortedRepositoriesListingAdapter.Action*/ {
+class SortedGithubReposListingFragment :
+    DaggerFragment()/*, sortedRepositoriesListingAdapter.Action*/ {
 
 
     @Inject
@@ -27,13 +27,19 @@ class SortedGithubReposListingFragment : DaggerFragment()/*, sortedRepositoriesL
 
     private val adapter = SortedRepositoriesListingAdapter()
 
-    private lateinit var binding: FragmentMoviesListingBinding
+    private var _binding: FragmentReposListingBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentMoviesListingBinding.inflate(layoutInflater)
+        _binding = FragmentReposListingBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun bindViews() {
@@ -78,12 +84,4 @@ class SortedGithubReposListingFragment : DaggerFragment()/*, sortedRepositoriesL
         bindViews()
         pullData()
     }
-//
-//    override fun onItemClicked(id: Int) {
-//        findNavController().navigate(
-//            MoviesListingFragmentDirections.actionLocaleSimsListingFragmentToCountriesPackagesListingFragment(
-//                id
-//            )
-//        )
-//    }
 }
