@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_content_nav_graph"
+    app:startDestination="@id/localeSimsListingFragment">
+    <fragment
+        android:id="@+id/localeSimsListingFragment"
+        android:name="com.task.task.ui_module.local_esims_listing.MoviesListingFragment"
+        android:label="fragment_movies_listing"
+        tools:layout="@layout/fragment_movies_listing" >
+        <action
+            android:id="@+id/action_localeSimsListingFragment_to_countriesPackagesListingFragment"
+            app:destination="@id/countriesPackagesListingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countriesPackagesListingFragment"
+        android:name="com.task.task.ui_module.country_packages_listing.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>
