@@ -7,7 +7,13 @@ data class LicenseResponse(
     val name: String,
     val node_id: String,
     val spdx_id: String,
-    val url: String
+    val url: String?
 ){
-    fun toDomain()= License(key, name, node_id, spdx_id, url)
+    fun toDomain()= License(
+        key = key,
+        name = name,
+        nodeId = node_id,
+        spdxId = spdx_id,
+        url = url?:""
+    )
 }

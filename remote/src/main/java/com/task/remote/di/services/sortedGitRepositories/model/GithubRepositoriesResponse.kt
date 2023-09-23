@@ -9,8 +9,8 @@ data class GithubRepositoriesResponse(
 ) {
 
     fun toDomain(): GithubRepositoriesDomain = GithubRepositoriesDomain(
-        incomplete_results,
-        items.map { item -> item.toDomain() },
-        total_count
+        incompleteResults = incomplete_results,
+        items = items.map { item -> item.toDomain() },
+        totalCount = total_count
     )
 }

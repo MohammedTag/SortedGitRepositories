@@ -48,7 +48,7 @@ data class Item(
     val labelsUrl: String,
     val language: String,
     val languagesUrl: String,
-    val license: License,
+    val license: License?,
     val mergesUrl: String,
     val milestonesUrl: String,
     val name: String,

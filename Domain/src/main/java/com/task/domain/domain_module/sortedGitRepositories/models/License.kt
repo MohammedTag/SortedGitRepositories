@@ -5,5 +5,5 @@ data class License(
     val name: String,
     val nodeId: String,
     val spdxId: String,
-    val url: String
+    val url: String?
 )

@@ -23,23 +23,23 @@ data class OwnerResponse(
     val url: String
 ) {
     fun toDomain() = Owner(
-        avatar_url,
-        events_url,
-        followers_url,
-        following_url,
-        gists_url,
-        gravatar_id,
-        html_url,
-        id,
-        login,
-        node_id,
-        organizations_url,
-        received_events_url,
-        repos_url,
-        site_admin,
-        starred_url,
-        subscriptions_url,
-        type,
-        url
+        avatarUrl = avatar_url,
+        eventsUrl = events_url,
+        followersUrl = followers_url,
+        followingUrl = following_url,
+        gistsUrl = gists_url,
+        gravatarId = gravatar_id,
+        htmlUrl = html_url,
+        id = id,
+        login = login,
+        nodeId = node_id,
+        organizationsUrl = organizations_url,
+        receivedEventsUrl = received_events_url,
+        reposUrl = repos_url,
+        siteAdmin = site_admin,
+        starredUrl = starred_url,
+        subscriptionsUrl = subscriptions_url,
+        type = type,
+        url = url
     )
 }
