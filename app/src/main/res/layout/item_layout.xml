@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="4dp"
+    android:background="@drawable/bg_white_15_round_corners">
+
+    <ImageView
+        android:id="@+id/avatarIv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginVertical="16dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/repoOwnerNameTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarIv"
+        app:layout_constraintTop_toTopOf="@id/avatarIv"
+        tools:text="repo Owner" />
+
+    <TextView
+        android:id="@+id/repoNameTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarIv"
+        app:layout_constraintTop_toBottomOf="@+id/repoOwnerNameTv"
+        tools:text="repo Name" />
+
+    <TextView
+        android:id="@+id/repoDescTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarIv"
+        app:layout_constraintTop_toBottomOf="@+id/repoNameTv"
+        tools:text="repo desc" />
+
+    <TextView
+        android:id="@+id/repoLanguageTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@id/avatarIv"
+        app:layout_constraintTop_toBottomOf="@+id/repoDescTv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        tools:text="repo Owner" />
+    <TextView
+        android:id="@+id/starsCountTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/repoLanguageTv"
+        app:layout_constraintTop_toBottomOf="@+id/repoDescTv"
+        tools:text="repo Owner" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
