@@ -1,7 +1,7 @@
 package com.task.remote.di.services.sortedGitRepositories
 
 import com.task.remote.di.EndPoints
-import com.task.remote.di.services.sortedGitRepositories.models.GithubRepositoriesResponse
+import com.task.remote.di.services.sortedGitRepositories.model.GithubRepositoriesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 
