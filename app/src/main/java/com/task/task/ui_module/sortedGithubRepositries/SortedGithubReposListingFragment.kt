@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
@@ -43,7 +44,30 @@ class SortedGithubReposListingFragment :
     }
 
     private fun bindViews() {
-        binding.localeSimsRv.adapter = adapter
+        with(binding) {
+            reposListingRv.adapter = adapter
+        }
+    }
+
+
+    private fun hideLoading() {
+        with(binding) {
+            shimmerLayout.apply {
+                isVisible = false
+                showShimmer(false)
+                stopShimmer()
+            }
+        }
+    }
+
+    private fun showLoading() {
+        with(binding) {
+            shimmerLayout.apply {
+                isVisible = true
+                showShimmer(true)
+                startShimmer()
+            }
+        }
     }
 
     private fun pullData() {
@@ -52,6 +76,7 @@ class SortedGithubReposListingFragment :
             sortedRepositories.observe(viewLifecycleOwner) { event ->
                 when (event) {
                     is RepositoriesListEvents.ErrorState -> {
+                        hideLoading()
                         Snackbar.make(
                             binding.paretCl,
                             "${getString(R.string.something_went_wrong)}${event.err}",
@@ -60,15 +85,16 @@ class SortedGithubReposListingFragment :
                     }
 
                     is RepositoriesListEvents.LoadingState -> {
-                        binding.progressBar.visibility = VISIBLE
+                        showLoading()
                     }
 
                     is RepositoriesListEvents.RetrievedMoviesListSuccessfully -> {
-                        binding.progressBar.visibility = GONE
+                        hideLoading()
                         with(event.list) {
                             if (isEmpty()) {
                                 binding.emptyStateView.visibility = VISIBLE
                             } else {
+                                binding.reposListingRv.isVisible = true
                                 adapter.submitList(event.list)
                                 binding.emptyStateView.visibility = GONE
                             }
