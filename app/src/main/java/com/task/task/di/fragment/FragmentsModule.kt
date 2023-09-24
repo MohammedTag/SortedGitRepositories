@@ -9,5 +9,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentsModule{
     @FragmentScope
     @ContributesAndroidInjector
-    abstract  fun contributeMoviesListingFragment(): SortedGithubReposListingFragment
+    abstract  fun contributeReposListingFragment(): SortedGithubReposListingFragment
 }

@@ -1,6 +1,5 @@
 package com.task.task.presentation_module.sortedGithubRepositories.events
 
-import com.task.domain.domain_module.sortedGitRepositories.models.GithubRepositoriesDomain
 import com.task.task.presentation_module.sortedGithubRepositories.models.GithubRepoUi
 
 
@@ -12,7 +11,7 @@ sealed class RepositoriesListEvents {
 
     class ErrorState(val err: Throwable) : RepositoriesListEvents()
 
-    class RetrievedMoviesListSuccessfully(val list: List<GithubRepoUi>) : RepositoriesListEvents()
+    class RetrievedSortedReposListSuccessfully(val list: List<GithubRepoUi>) : RepositoriesListEvents()
 
     companion object {
 
@@ -21,8 +20,8 @@ sealed class RepositoriesListEvents {
         fun error(err: Throwable): RepositoriesListEvents =
             ErrorState(err)
 
-        fun retrievedMoviesListSuccessfully(list: List<GithubRepoUi>): RepositoriesListEvents =
-            RetrievedMoviesListSuccessfully(list)
+        fun retrievedSortedReposListSuccessfully(list: List<GithubRepoUi>): RepositoriesListEvents =
+            RetrievedSortedReposListSuccessfully(list)
 
     }
 }
