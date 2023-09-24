@@ -42,6 +42,10 @@ class SortedGithubReposListingFragment :
 
     private fun bindViews() {
         with(binding) {
+            pullToRefreshLayout.setOnRefreshListener {
+                viewModel.getSortedRepos()
+                showLoading()
+            }
             reposListingRv.adapter = adapter
             retryButton.setOnClickListener {
                 viewModel.getSortedRepos()
@@ -52,6 +56,7 @@ class SortedGithubReposListingFragment :
 
     private fun hideLoading() {
         with(binding) {
+            pullToRefreshLayout.isRefreshing = false
             shimmerLayout.apply {
                 isVisible = false
                 showShimmer(false)
