@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/localeSimsListingFragment"
         android:name="com.task.task.ui_module.sortedGithubRepositries.SortedGithubReposListingFragment"
-        android:label="fragment_movies_listing"
+        android:label="fragment_repos_listing"
         tools:layout="@layout/fragment_repos_listing" >
     </fragment>
 

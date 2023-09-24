@@ -23,7 +23,7 @@ class RepositoriesListViewModel @Inject constructor(
     fun getSortedRepos() {
         executeSingle(useCase = getSortedReposUseCase.run(null),
             successConsumer = { data ->
-                _sortedRepositories.value = RepositoriesListEvents.retrievedMoviesListSuccessfully(
+                _sortedRepositories.value = RepositoriesListEvents.retrievedSortedReposListSuccessfully(
                     mapper.fromListOfRepositoriesDomainToListOfRepositoriesUiModel(data.items)
                 )
             },

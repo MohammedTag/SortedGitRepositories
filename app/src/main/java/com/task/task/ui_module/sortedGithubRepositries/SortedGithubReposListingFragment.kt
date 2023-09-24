@@ -97,7 +97,7 @@ class SortedGithubReposListingFragment :
                         showLoading()
                     }
 
-                    is RepositoriesListEvents.RetrievedMoviesListSuccessfully -> {
+                    is RepositoriesListEvents.RetrievedSortedReposListSuccessfully -> {
                         hideLoading()
                         binding.animationView.isVisible = false
                         binding.retryButton.isVisible = false

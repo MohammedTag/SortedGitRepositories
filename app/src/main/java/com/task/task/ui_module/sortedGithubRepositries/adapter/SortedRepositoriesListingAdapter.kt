@@ -9,7 +9,7 @@ import com.task.task.presentation_module.sortedGithubRepositories.models.GithubR
 
 
 class SortedRepositoriesListingAdapter : ListAdapter<GithubRepoUi, RepositoryItemViewHolder>(
-    MoviesListingDiffCallback()
+    ReposDiffCallback()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryItemViewHolder {
@@ -20,7 +20,7 @@ class SortedRepositoriesListingAdapter : ListAdapter<GithubRepoUi, RepositoryIte
     override fun onBindViewHolder(holder: RepositoryItemViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-    class MoviesListingDiffCallback : DiffUtil.ItemCallback<GithubRepoUi>() {
+    class ReposDiffCallback : DiffUtil.ItemCallback<GithubRepoUi>() {
         override fun areItemsTheSame(oldItem: GithubRepoUi, newItem: GithubRepoUi): Boolean {
             return oldItem == newItem
         }
